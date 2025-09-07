@@ -1,0 +1,116 @@
+*'game zone' er jonno alada 2 ta 'pot' system thakbe(except battle game). user jakono game e bet korle betting amount er 30% pot1 e joma hobe as a company fees. baki 70% pot2 te joma hobe. And protibar protita game er jonnoy user jokhon e bet korbe satha satha backend thaka aga check kora hobe pot2 er balance user er betting amount er thaka basi naki kom. jodi pot2 balance user er betting amount er thaka low hoi tahola use game loss hobe. R jodi pot2 balance basi hoi tokhon fairly game logic apply kora hobe.
+
+ **1st game:**  
+> React + TailwindCSS দিয়ে একটি **Dice Game** বানাও, যেখানে ইউজার বেট করতে পারবে, রোল আন্ডার/ওভার সিলেক্ট করতে পারবে, এবং রেজাল্ট অনুযায়ী ব্যালান্স আপডেট হবে।  
+> গেমে **Auto Roll** ফিচার থাকবে এবং ব্যালান্স ও হিস্ট্রি **localStorage**-এ সেভ হবে যাতে পেজ রিফ্রেশের পরও ডেটা থাকে।
+> 
+> ---
+> **Requirements:**
+> 
+> 1. **UI Elements:**
+>    - হেডারে গেমের নাম ও লগইন করা ইউজারের নাম (`useAuth` context থেকে)।
+>    - **Circular Progress SVG** যা টার্গেট নাম্বার ভিজুয়ালি দেখাবে।
+>    - টার্গেট নাম্বার পরিবর্তনের জন্য স্লাইডার ও +/- বাটন।
+>    - বেট অ্যামাউন্ট ইনপুট, সাথে ½, 2×, Max বাটন।
+>    - Roll Type সিলেক্ট (Under / Over)।
+>    - Payout multiplier ও সম্ভাব্য জেতার পরিমাণ BTC/USD-এ দেখাবে।
+>    - Play বাটন (লগইন না থাকলে Login to Play)।
+>    - **Auto Roll বাটন**: ক্লিক করলে নির্দিষ্ট ইন্টারভালে স্বয়ংক্রিয়ভাবে রোল হবে, যতক্ষণ না ইউজার বন্ধ করে বা ব্যালান্স শেষ হয়।
+>    - রেজাল্ট কার্ড (WIN/LOSS) অ্যানিমেশন সহ।
+>    - ব্যালান্স ডিসপ্লে।
+>    - শেষ 10 রোলের হিস্ট্রি (রোল ভ্যালু + WIN/LOSS)।
+>    - এরর মেসেজ (যেমন Insufficient balance)।
+> 
+> 2. **Logic:**
+>    - প্রাথমিক বেট: 0.01 USDT।
+>    - House edge: 1%।
+>    - Payout multiplier: `99 / winChance` (winChance নির্ভর করবে rollType ও target-এর উপর)।
+>    - Roll: `Math.random() * 100`।
+>    - Win condition:
+>      - Roll Under: roll < target
+>      - Roll Over: roll > target
+>    - জিতলে: ব্যালান্স += bet × payoutMultiplier  
+>      হারলে: ব্যালান্স -= bet
+>    - হিস্ট্রি সর্বোচ্চ 10 এন্ট্রি রাখবে।
+>    - প্রতিটি রোলের পর ব্যালান্স ও হিস্ট্রি localStorage-এ সেভ হবে।
+> 
+> 3. **Auto Roll Feature:**
+>    - Auto Roll বাটনে ক্লিক করলে একটি state (`isAutoRolling`) true হবে।
+>    - নির্দিষ্ট delay (যেমন 1 সেকেন্ড) দিয়ে handlePlay() বারবার কল হবে।
+>    - ব্যালান্স শেষ হলে বা ইউজার Auto Roll বন্ধ করলে থামবে।
+>    - Auto Roll চলাকালীন Play বাটন disable থাকবে।
+> 
+> 4. **Tech Stack:**
+>    - React functional components
+>    - Hooks: `useState`, `useEffect`
+>    - TailwindCSS for styling
+>    - `react-icons` for icons
+>    - `react-router-dom` for navigation
+>    - Context API (`useAuth`) for user info
+>    - localStorage for persistence
+> 
+> 5. **Extra:**
+>    - Play বাটনে ক্লিক করলে 800ms ডিলে দিয়ে রোল অ্যানিমেশন সিমুলেট করো।
+>    - Responsive design।
+>    - Future scope: Provably Fair system, sound effects।
+
+
+**2nd game**
+
+I want you to build a React-based "Battle Game" web app with the following features:
+
+1. **Daily Players & Matchup**
+   - There will be a fixed list of 10 famous football players with their images.
+   - Every day, exactly 2 players will be selected for the battle (rotating daily).
+   - Players are displayed as clickable cards with images, names, and selection highlight.
+
+2. **Betting System**
+   - User starts with a default balance (e.g., 1 USDT).
+   - User can select one player per day and place a bet.
+   - Bet amount controls: Half, Double, Max.
+   - Once a player is selected for the day, it is locked until the next day.
+   - Store bets and selections in `localStorage` so they persist after refresh.
+
+3. **Winner Calculation**
+   - The next day, determine the winner based on the rule:
+     - The player with LESS total bet volume from all users wins (underdog wins).
+   - If the user bet on the winning player, they get double their bet amount.
+   - Show confetti animation and play a win sound if the user wins, loss sound if they lose.
+
+4. **Battle History**
+   - Show a list of past results with:
+     - Date
+     - Result (WIN/LOSS)
+     - Player name
+     - Bet amount
+     - Payout amount
+   - Color code wins (green) and losses (red).
+
+5. **UI/UX**
+   - Full-screen centered layout with gradient background.
+   - Player cards with hover effects and VS text in the middle.
+   - Countdown timer showing time left until the day ends.
+   - Balance display and bet summary.
+   - Background music with play/pause toggle.
+   - Mobile responsive design.
+
+6. **Tech Stack**
+   - React + Tailwind CSS
+   - Use `useState`, `useEffect`, `useMemo` hooks.
+   - Use `localStorage` for persistence.
+   - Use `canvas-confetti` for win animation.
+   - Use `Audio` API for background music and win/loss sounds.
+
+7. **Extra**
+   - Add a login check: if the user is not logged in, show a "Login to Play" button that redirects to `/login`.
+   - Make the code clean, reusable, and well-commented.
+
+Please generate the complete React component code for this game, including:
+- Player list and images mapping
+- Daily player selection logic
+- Bet handling logic
+- Winner calculation logic
+- UI with Tailwind classes
+- Sound and confetti integration
+
+*a user friendly, mobile responsesive, excillent UI is required to attract users.

@@ -1,0 +1,94 @@
+> Task: Implement the backend logic for my lottery website.
+
+
+Requirements:
+I need a backend logic that will handle three types of lottery draws – Daily, Weekly, Monthly – based on the following rules:
+
+
+---
+
+1. Daily Lottery Draw
+
+Take 30% of the prize pool as platform fees.
+
+Remaining 70% prize pool is divided into 1:2 ratio:
+
+First part: Divide by 10 → distribute to lucky users according to their ticket numbers (ignore floating numbers, use only integers).
+
+Second part: Divide by 5 → distribute similarly.
+
+
+Optional Rule:
+
+If 70% prize pool exceeds $10,500, reward 1 person $10,000 first, then use remaining amount with the same 1:2 rule above.
+
+
+Extra Rule:
+
+If a user buys 10 daily tickets at once, they automatically receive 1 free monthly ticket (but its value does not add to the monthly prize pool).
+
+
+Win Chance: 10% per ticket (make sure to use fair shuffling of ticket numbers to randomly pick winners).
+
+
+
+---
+
+2. Weekly Lottery Draw
+
+Take 30% of the prize pool as platform fees.
+
+Remaining 70% prize pool is divided by 20 → winners selected randomly based on ticket numbers.
+
+Optional Rule:
+
+If prize pool > $10,500 → reward 2 users with R15 motorcycle ($5,000 each).
+
+If prize pool > $22,000 → reward 4 users with R15 motorcycle ($5,000 each).
+
+Remaining money after giving motorcycles → divide by 20 for lucky winners.
+
+
+
+
+---
+
+3. Monthly Lottery Draw
+
+Take 30% of the prize pool as platform fees.
+
+Remaining 70% prize pool is divided by 50 → winners selected randomly based on ticket numbers.
+
+Optional Rules:
+
+1. If prize pool > $30,000 → reward 1 person $20,000 + 5 people latest iPhone ($1,500 each). Remaining money → divide by 50 for lucky winners.
+
+
+2. If prize pool > $50,000 → reward 1 person $20,000 + 5 people mystery giftbox ($2,000+) + 10 people latest iPhone ($1,500 each). Remaining money → divide by 50 for lucky winners.
+
+
+
+
+
+---
+
+Common Logic for All Draws
+
+Use only pure integer numbers when selecting winners. Ignore floating numbers.
+
+System must fairly shuffle ticket numbers for every draw to ensure randomness.
+
+Do not store ticket number lists after draw ends (memory optimization).
+
+If no tickets sold, show a fake number as winner and continue to next draw.
+
+
+
+---
+
+Deliverables from AI:
+
+Clean, modular backend function(s) that calculate winners and prize distribution based on above logic.
+
+
+Important: The focus is on fair prize distribution, memory efficiency, and easy integration with existing frontend.

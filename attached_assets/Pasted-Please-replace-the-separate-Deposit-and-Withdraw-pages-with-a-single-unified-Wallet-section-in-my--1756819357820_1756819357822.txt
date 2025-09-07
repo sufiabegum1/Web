@@ -1,0 +1,45 @@
+Please replace the separate Deposit and Withdraw pages with a single unified "Wallet" section in my Node.js + Express project. The Wallet should have a dashboard-style interface where the user can see and manage all balance-related functions in one place. Requirements:
+
+1. **Wallet Dashboard Overview**:
+   - Show Total Balance (sum of deposits, winnings, bonuses minus withdrawals).
+   - Show separate cards/sections for:
+     - USDT Deposits
+     - Lottery Winnings
+     - Bonuses
+     - Withdrawn Amount
+   - Display recent transactions (deposit, withdraw, bonus, winnings) in a table with date, type, amount, and status.
+
+2. **Deposit Function**:
+   - Keep existing deposit logic but integrate it into the Wallet page as a tab or modal.
+   - Allow USDT deposit via existing method.
+   - Update balance instantly after successful deposit.
+
+3. **Withdraw Function**:
+   - Keep existing withdraw logic but integrate it into the Wallet page as a tab or modal.
+   - Validate that the user has enough balance before allowing withdrawal.
+   - Store requests in the database with status (pending, approved, rejected).
+
+4. **Bonus Tracking**:
+   - Add a bonus balance field.
+   - Show bonus history in the transaction table.
+   - Allow admin to credit bonuses via admin panel.
+
+5. **UI/UX**:
+   - Use a clean, modern, mobile-friendly design.
+   - Use tabs or side menu inside the Wallet for navigation: Overview | Deposit | Withdraw | Bonus History | Transaction History.
+   - Highlight Total Balance at the top with large font and icon.
+
+6. **Backend & Database**:
+   - Use SQLite or existing DB to store all wallet-related data.
+   - Create a unified `wallet` table or view to fetch all balances and transactions for the logged-in user.
+   - Ensure all updates (deposit, withdraw, bonus, winnings) are reflected in real-time.
+
+7. **Security**:
+   - Only logged-in users can access their wallet.
+   - Validate all inputs and prevent negative balances.
+
+8. **Admin Panel Integration**:
+   - Admin can view all user wallets, approve/reject withdrawals, and credit bonuses.
+   - Show wallet summary per user in admin view.
+
+Keep the code modular, low-cost, and easy to maintain. Prioritize performance and responsive design.

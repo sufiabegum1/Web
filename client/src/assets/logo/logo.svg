@@ -1,0 +1,60 @@
+<svg width="200" height="50" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.3" />
+      <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.3" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Glow effect -->
+  <circle cx="25" cy="25" r="20" fill="url(#glow)" opacity="0.4"/>
+  
+  <!-- Main logo symbol -->
+  <g transform="translate(5, 5)">
+    <!-- Lottery ticket with perforated edge -->
+    <rect x="2" y="8" width="36" height="24" rx="2" fill="url(#gradient)" opacity="0.8"/>
+    
+    <!-- Perforations -->
+    <circle cx="2" cy="14" r="1.5" fill="none" stroke="white" stroke-width="0.5" opacity="0.6"/>
+    <circle cx="2" cy="20" r="1.5" fill="none" stroke="white" stroke-width="0.5" opacity="0.6"/>
+    <circle cx="2" cy="26" r="1.5" fill="none" stroke="white" stroke-width="0.5" opacity="0.6"/>
+    <circle cx="38" cy="14" r="1.5" fill="none" stroke="white" stroke-width="0.5" opacity="0.6"/>
+    <circle cx="38" cy="20" r="1.5" fill="none" stroke="white" stroke-width="0.5" opacity="0.6"/>
+    <circle cx="38" cy="26" r="1.5" fill="none" stroke="white" stroke-width="0.5" opacity="0.6"/>
+    
+    <!-- Trading candlestick overlay -->
+    <g transform="translate(12, 10)">
+      <!-- Wick -->
+      <line x1="8" y1="2" x2="8" y2="18" stroke="white" stroke-width="1" opacity="0.9"/>
+      <!-- Candle body (bullish) -->
+      <rect x="5" y="6" width="6" height="8" fill="#10b981" stroke="white" stroke-width="0.5" rx="1"/>
+      <!-- Price action sparkles -->
+      <circle cx="15" cy="4" r="1" fill="white" opacity="0.8"/>
+      <circle cx="18" cy="7" r="0.5" fill="white" opacity="0.6"/>
+      <circle cx="16" cy="10" r="0.8" fill="white" opacity="0.7"/>
+    </g>
+    
+    <!-- Lucky stars -->
+    <path d="M32,6 L33,3 L34,6 L37,5 L35,8 L37,11 L34,10 L33,13 L32,10 L29,11 L31,8 L29,5 Z" 
+          fill="white" opacity="0.9" transform="scale(0.3)"/>
+  </g>
+  
+  <!-- Company name -->
+  <text x="55" y="20" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="currentColor">
+    LUCKYWIN
+  </text>
+  <text x="55" y="35" font-family="Inter, system-ui, sans-serif" font-size="9" font-weight="500" fill="currentColor" opacity="0.7">
+    LOTTERY & TRADING
+  </text>
+  
+  <!-- Animated elements -->
+  <animateTransform attributeName="transform" attributeType="XML" type="rotate" 
+                    values="0 25 25; 5 25 25; 0 25 25; -5 25 25; 0 25 25" 
+                    dur="4s" repeatCount="indefinite"/>
+</svg>

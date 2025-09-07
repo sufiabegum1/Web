@@ -1,0 +1,173 @@
+> Task: Extend my lottery website backend and frontend with new features.
+
+
+Current System: We already have Daily, Weekly, and Monthly lucky draws with prize pool distribution logic (1:2 split, fees, optional rewards, free monthly tickets, etc.). Keep that logic as it is.
+
+New Requirements:
+
+
+---
+
+1. Surprise Draw (New Section)
+
+Add a separate section on the frontend named "Surprise Draw".
+
+Default message to display:
+
+> "Surprise draw is not available at this moment, keep an eye as it can appear at any time with exciting Surprise rewards."
+
+
+
+This draw is manually created by admin. Admin can set:
+
+Prize pool
+
+Number of winners
+
+Reward type (cash, gift, custom text)
+
+Winning logic (random fair shuffle of all tickets)
+
+
+When an active surprise draw exists, replace default text with live draw details (timer, pool, ticket price, etc.).
+
+Once draw ends, show results and reset back to default message.
+
+
+---
+
+2. Mystery Search Game (Game Zone)
+
+Registration System:
+
+Cost: $1 per user to register before game starts.
+
+Only registered users can participate.
+
+Others can only watch progress but cannot submit guesses.
+
+
+Game Rules:
+
+Each round runs for 3 days.
+
+At start of each round:
+
+System generates a random 12-word wallet seed phrase.
+
+Show 1st and 10th word as clues immediately.
+
+Show a text box for registered users to submit full seed phrase.
+
+Each wrong submission triggers 1 minute cooldown before next try.
+
+
+Clue Reveal Logic:
+
+After 24h → reveal 4th word + message "more clues coming soon".
+
+Every 4h after that, reveal another word in this order: 12th → 7th → 3rd → 9th → 11th → 2nd → 8th → 5th → 6th.
+
+
+Winning Condition:
+
+When someone submits correct phrase → game instantly ends.
+
+Show winner username + reveal full seed phrase to everyone.
+
+Winner receives prize money after round ends.
+
+
+No Winner Case:
+
+Game silently ends after 3 days.
+
+Show full seed phrase publicly and mark "no winner this round".
+
+
+After round ends → immediately start a new round.
+
+
+UI Behavior:
+
+Show progress of clue reveal to everyone.
+
+Only registered users see submission box.
+
+Show a small box saying:
+
+> "Missed the current game? Register for the next game before it starts!"
+whenever a game is running.
+
+
+---
+
+3. Try Your Luck Game (Game Zone)
+
+Free to play game, but requires $1 lock from user’s balance.
+
+Two options when locking money:
+
+1. Standard: Lock for 3 days (auto-unlock after game ends).
+
+
+2. Lock Until Win:
+
+Money stays locked across multiple rounds until user manually requests unlock.
+
+Unlock request only takes effect after the current round ends.
+
+
+
+
+After game ends:
+
+If user did not win → show message:
+
+> "Not win this time. Better luck next time!"
+
+
+
+Unlock or keep locked money depending on user choice.
+
+
+
+
+---
+
+4. General Requirements
+
+Ensure fair randomization when selecting winners.
+
+Maintain memory efficiency (delete temporary data after draw/game ends).
+
+Provide secure backend endpoints for:
+
+Creating / updating surprise draws (admin only)
+
+Registering for Mystery Search
+
+Submitting seed phrase guess
+
+Locking/unlocking funds for Try Your Luck
+
+Fetching game states (for frontend updates)
+
+
+Provide example JSON request/response for each endpoint for easy integration.
+
+---
+
+Deliverables from AI:
+
+Backend implementation (controllers, models, routes).
+
+Example API endpoints for all new features.
+
+Frontend placeholder components (Surprise Draw box, Mystery Search UI, Try Your Luck UI).
+
+Timer logic & clue reveal scheduling.
+
+Proper state reset after each draw/game round.
+
+Secure admin panel endpoints for manual surprise draw creation.

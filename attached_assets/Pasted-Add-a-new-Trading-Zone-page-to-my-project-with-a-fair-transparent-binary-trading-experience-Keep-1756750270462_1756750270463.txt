@@ -1,0 +1,73 @@
+Add a new “Trading Zone” page to my project with a fair, transparent binary trading experience. Keep everything low-cost and simple to maintain. Implement the following:
+
+1) Entry animation (2–3 seconds)
+- On click of “Trading Zone” in the navbar, show a short, skippable intro animation that conveys a premium/wealth vibe (gold/black palette, subtle particles).
+- Use a lightweight Lottie animation (local JSON) or CSS animations to avoid heavy video assets. After 2–3 seconds (or on skip), load the trading page.
+
+2) Instruments and live pricing
+- Trading pairs: BTC/USD (spot), ETH/USD (spot), EUR/USD (forex).
+- Use free/low-cost live price APIs:
+  - BTC/USD, ETH/USD: CoinGecko or Binance public ticker (no auth).
+  - EUR/USD: Frankfurter or exchangerate.host.
+  - Implement a server-side price fetcher (with caching/throttling) to avoid rate limits. Provide a small attribution label under the chart (“Prices via …”).
+- Expose a WebSocket or SSE endpoint for pushing price updates to the client every 1–5s.
+
+3) Chart and trade controls (UI similar to the reference screenshot/binary or expertoption UI)
+- Dark theme UI with left nav (Trade, Support, Account, Market), center chart, right-side trade panel.
+- Use a lightweight chart library (e.g., TradingView Lightweight Charts). Show 1m candlesticks, latest price line, and a 60s countdown for active positions.
+- Right panel controls:
+  - Amount input ($1 default, validation for min/max).
+  - Duration selector (default 60s).
+  - Up (green) and Down (red) buttons.
+  - Payout preview text: “Your payout: $<amount * 1.95> if win”.
+- Make it responsive and mobile-friendly.
+
+4) Wallet and accounting (integrate with my existing USDT wallet)
+- User wallet shows:
+  - Total Balance
+  - USDT Deposits (sum)
+  - Withdrawn (sum)
+- Transaction history table with timestamps: Deposits, Wins/Losses, Withdrawals.
+- Data store: SQLite (low-cost). Use migrations/seed scripts.
+
+5) Two-pot accounting
+- On every trade placement, allocate stake: 70% to Pot1 (payout pool), 30% to Pot2 (platform fee).
+- Pot1 is used to pay winners; Pot2 is retained as company fee.
+- Solvency rule:
+  - If Pot1 balance is insufficient to cover the potential payout, the price chart will then run by a scripting method instead of live chart view that showing the user's betting will go opposite direction with a little difference and as the pair price shows opposite direction the user will lost the trade as per rules .”
+
+6) Trade lifecycle and settlement (server-side, tamper-resistant)
+- When a user places a trade:
+  - Server validates balance >= stake, locks/funds the stake, records instrument, direction, entry price, timestamp, expiry.
+  - Entry price is captured server-side at execution time from the price cache.
+- At expiry:
+  - Server fetches the price again, determines win/loss purely on direction vs entry->expiry prices.
+  - If win: credit user balance with stake * 1.95 (stake + 95% profit) from Pot1.
+  - If loss: stake remains allocated (70% Pot1, 30% Pot2).
+- All decisions, timestamps, and prices are logged for audit. Expose an admin-visible trade log.
+
+7) Admin dashboard
+- Protected by admin login.
+- Views:
+  - Pot balances (Pot1, Pot2), daily PnL, and trade volume.
+  - Trade log with filters (user, instrument, timeframe, result).
+  - Withdrawal requests (integrate with existing system): approve/reject flows. On approval, deduct from user balance.
+- Admin must NOT be able to alter outcomes. Only manage withdrawals and view/read-only analytics.
+
+8) Risk, compliance, and UX safeguards
+- Before first trade, show a modal with:
+  - Risk disclosure: “Binary options are high risk. You can lose your entire stake.”
+  - Terms acceptance (checkbox) and age gate (18+).
+- Show a small “High risk” label near the trade panel.
+- If price feed is delayed for any instrument, clearly display “Delayed”.
+
+9) Testing and quality
+- Unit tests for payout math, pot allocations, and solvency check.
+- Integration tests for trade placement -> expiry -> settlement.
+- Seed script for demo users, deposits, and a few sample trades.
+- Write clean, modular code (routes/controllers/services), with comments.
+
+Tech and cost constraints:
+- Backend: Node.js + Express, SQLite (no paid DB). Use node-cron if needed for periodic price refresh.
+- Frontend: Vanilla JS/React (choose the simpler path). Lightweight Charts for charting.
+- Avoid paid services; prefer free tiers and caching. Keep assets light for fast load.

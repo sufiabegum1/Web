@@ -1,0 +1,43 @@
+Integrate a new section called “Game Zone” into my existing website (Node.js + Express). This section should be fully connected to the central Wallet and user system. The Game Zone will offer interactive mini-games that reward users with bonuses, credits, or USDT. Requirements:
+
+1. **Navigation & Entry Animation**:
+   - Add a “Game Zone” button to the main navigation bar.
+   - On click, trigger a short, energetic animation (e.g., coins falling, jackpot flash).
+   - After animation, load the Game Zone dashboard.
+
+2. **Available Games**:
+   - Include 2–3 simple, addictive games:
+     - 🎡 Spin Wheel: Random bonus (0–100 USDT).
+     - 🎯 Scratch Card: Reveal hidden prize.
+     - 🔢 Number Match: Pick 3 numbers; match to win.
+   - just make it as example, no logic/game need inside. i will tell you later about the game name,logic,UI,etc details.
+
+3. **Reward System**:
+   - All winnings go to the user’s Wallet (bonus balance).
+   - Show animated success messages when a user wins.
+   - Log every play and outcome in a `game_history` table.
+
+4. **Game Zone Dashboard**:
+   - Display available games with play buttons and cooldown indicators.
+   - Show user’s current bonus balance.
+   - Include a “Recent Wins” section and game history.
+
+5. **Backend Logic**:
+   - Use secure, fair randomization (seeded PRNG).
+   - Enforce cooldowns and prevent abuse.
+   - Validate user session before allowing gameplay.
+
+6. **UI/UX Design**:
+   - Use vibrant, playful colors (gold, green, blue).
+   - Mobile-first design with fast loading.
+   - Optional sound effects with toggle switch.
+
+7. **Admin Panel Integration**:
+   - Admin can view game logs, user win stats, and manually credit bonuses.
+
+8. **Security & Abuse Prevention**:
+   - Strict cooldown enforcement.
+   - Log IP/device info per play (optional).
+   - Prevent multiple sessions or bots from exploiting games.
+
+Ensure the Game Zone feels fun, rewarding, and seamlessly integrated into the existing platform. Keep the code modular, scalable, and optimized for performance.
